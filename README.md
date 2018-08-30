@@ -34,8 +34,7 @@ Go to your [EC2 Dashboard](https://console.aws.amazon.com/ec2/v2/)  and grab the
 	Installs OpenShift!
 	```
 	$ ansible-playbook -i ~/Documents/openshift-origin-ansible/inventory --key-file ~/.ssh/id_rsa \
-	  ~/Documents/openshift-ansible/playbooks/prerequisites.yml
-  ```
+	  ~/Documents/openshift-ansible/playbooks/prerequisites.yml ```
 
 ### Done!
 From here you can view your dashboard at https://[master node DNS name]:8443. You now have an OpenShift cluster installed with a master node and a worker node with a GPU. Next steps are to follow the [blog post](https://blog.openshift.com/how-to-use-gpus-with-deviceplugin-in-openshift-3-10/) to configure your cluster to consume the GPU resource!
