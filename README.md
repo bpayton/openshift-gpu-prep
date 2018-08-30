@@ -21,20 +21,24 @@ Go to your [EC2 Dashboard](https://console.aws.amazon.com/ec2/v2/)  and grab the
 ### Run the playbooks
 1. `prepare.yaml`
 	This playbook does some initial set up that is not included in the openshift-ansible prerequisites playbook. It's included in this repo.
+	
 	```
 	$ ansible-playbook ~/Workspace/openshift-origin-ansible/prepare.yaml -i ~/Workspace/openshift-gpu-prep/inventory --key-file ~/.ssh/id_rsa
 	```
 2.  `prerequisites.yml`
 	We can run this from the openshift-ansible repo. It will take a while
+	
 	```
 	$ ansible-playbook -i ~/Documents/openshift-origin-ansible/inventory --key-file ~/.ssh/id_rsa \
 	  ~/Documents/openshift-ansible/playbooks/prerequisites.yml
 	```
 3. `deploy_cluster.yml`
 	Installs OpenShift!
+	
 	```
 	$ ansible-playbook -i ~/Documents/openshift-origin-ansible/inventory --key-file ~/.ssh/id_rsa \
-	  ~/Documents/openshift-ansible/playbooks/prerequisites.yml ```
+	  ~/Documents/openshift-ansible/playbooks/prerequisites.yml 
+	```
 
 ### Done!
 From here you can view your dashboard at https://[master node DNS name]:8443. You now have an OpenShift cluster installed with a master node and a worker node with a GPU. Next steps are to follow the [blog post](https://blog.openshift.com/how-to-use-gpus-with-deviceplugin-in-openshift-3-10/) to configure your cluster to consume the GPU resource!
