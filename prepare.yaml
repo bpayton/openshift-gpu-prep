@@ -1,0 +1,53 @@
+---
+- hosts: nodes
+  gather_facts: no
+  pre_tasks:
+    - name: install python2
+      raw: sudo yum install -y python
+
+  tasks:
+    - name: install yum-utils
+      become: yes
+      yum:
+        name: yum-utils
+        state: latest
+
+    - name: yum config-manager
+      become: yes
+      shell: yum-config-manager --enable rhui-REGION-rhel-server-extras
+
+    - name: yum install docker
+      become: yes
+      yum:
+        name: docker
+        state: latest
+
+    - name: upgrade NetworkManager
+      become: yes
+      yum:
+        name: NetworkManager
+        state: latest
+
+    - name: enable network-manager
+      become: yes
+      shell: systemctl enable NetworkManager && systemctl start NetworkManager
+
+    - name: docker storage conf file
+      become: yes
+      copy:
+        content: "DEVS=/dev/xvdb\nVG=docker-vg\n"
+        dest: /etc/sysconfig/docker-storage-setup
+
+    - name: docker-storage-setup
+      become: yes
+      shell: docker-storage-setup
+
+    - name: enable docker
+      become: yes
+      shell: systemctl enable docker && systemctl start docker
+
+    - name: install git
+      become: yes
+      yum:
+        name: git
+        state: latest
