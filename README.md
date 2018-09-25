@@ -37,7 +37,7 @@ Go to your [EC2 Dashboard](https://console.aws.amazon.com/ec2/v2/)  and grab the
 	
 	```
 	$ ansible-playbook -i ~/Documents/openshift-origin-ansible/inventory --key-file ~/.ssh/id_rsa \
-	  ~/Documents/openshift-ansible/playbooks/deploy_cluster.yml 
+	  ~/Documents/openshift-ansible/playbooks/deploy_cluster.yml -e openshift_disable_check=package_version,disk_availability,memory_availability
 	```
 
 ### Done!
